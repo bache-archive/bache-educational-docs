@@ -1,13 +1,11 @@
 {
   "title": "Bache Educational Docs: Book-first, provenance-aware topic summaries (Christopher M. Bache, LSD and the Mind of the Universe)",
   "upload_type": "dataset",
-  "publication_type": "dataset",
-  "description": "Scholarly, citation-grounded educational documents synthesizing Christopher M. Bache’s LSD and the Mind of the Universe (2019) and public talks (2014–2025). Book quotes are primary; timestamped talk excerpts add context. Built for research, teaching, and RAG systems.",
+  "description": "Scholarly, citation-grounded educational documents synthesizing Christopher M. Bache’s LSD and the Mind of the Universe (2019) and public talks (2014–2025). Book quotations are primary; timestamped talk excerpts add context. Built for research and teaching.",
   "creators": [
     {
       "name": "Bache Archive",
-      "affiliation": "Bache Archive",
-      "orcid": "0000-0000-0000-0000"
+      "affiliation": "Independent Research Initiative"
     }
   ],
   "contributors": [
@@ -16,15 +14,15 @@
       "type": "Researcher"
     }
   ],
-  "license": "cc-by-4.0",
+  "license": "CC-BY-4.0",
   "keywords": [
     "Christopher M. Bache",
     "LSD and the Mind of the Universe",
-    "psychedelic philosophy",
-    "educational docs",
-    "RAG",
+    "psychedelics",
+    "consciousness studies",
     "nonduality",
-    "collective transformation"
+    "collective evolution",
+    "education"
   ],
   "related_identifiers": [
     {
@@ -38,11 +36,7 @@
       "resource_type": "dataset"
     }
   ],
-  "notes": "Built pages live at the GitHub Pages URL. Each topic page includes provenance and fair-use notes.",
-  "language": "eng",
-  "version": "v1.0.2",
-  "communities": [
-    { "identifier": "zenodo" }
-  ],
+  "notes": "Each topic page includes provenance, citation, and fair-use information. See GitHub Pages site for formatted educational views.",
+  "language": "en",
   "access_right": "open"
 }
