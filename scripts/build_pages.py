@@ -5,12 +5,12 @@ build_pages.py
 Reusable builder: converts index.md (with YAML front matter) to index.html
 for each topic in docs/educational/*/.
 
-Fixes in this version:
-- No duplicate Fair Use: if the Markdown already contains a "Fair Use" section,
-  the template will not inject an extra Fair Use card.
-- Removed the "View sources.json" button from the header.
-- Keeps "View Markdown" button.
-- Footer reads "Built by the Bache Archive".
+Improvements in this version:
+- Header: single 'Home' button to the Educational Docs homepage (no Markdown / sources links).
+- About card: simplified to a single 'About:' line and placed near the bottom (above Fair Use).
+- Fair Use: injected only if the Markdown does not already contain a Fair Use section.
+- Footer: 'Built by the Bache Archive' with Home linking to the Educational Docs homepage.
+- Optional note near the subtitle to ensure 'LSD and the Mind of the Universe (LSDMU)' appears at least once.
 
 Usage:
   python scripts/build_pages.py --root docs/educational --base-url /chris-bache-archive
@@ -18,7 +18,7 @@ Usage:
 """
 
 from __future__ import annotations
-import argparse, os, sys, re
+import argparse, os, re
 from typing import Dict, Tuple
 import yaml
 from markdown import markdown
@@ -26,6 +26,9 @@ from jinja2 import Template
 
 FRONT_MATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.DOTALL)
 LSDMU_PHRASE = "LSD and the Mind of the Universe (LSDMU)"
+
+# Absolute homepage link for the footer and hero button
+EDU_HOME = "https://bache-archive.github.io/bache-educational-docs/"
 
 HTML_TEMPLATE = """<!doctype html>
 <html lang="en">
@@ -47,25 +50,9 @@ HTML_TEMPLATE = """<!doctype html>
     {% if needs_lsdmu_note %}This page references <strong>{{ lsdmu_phrase }}</strong>.{% endif %}
   </p>
   <div class="btnrow">
-    <a class="btn-outline" href="./index.md">View Markdown</a>
+    <a class="btn" href="{{ edu_home }}">Home</a>
   </div>
 </header>
-
-<section class="section doc-meta" aria-labelledby="doc-meta-title">
-  <div class="card">
-    <h2 id="doc-meta-title">About this document</h2>
-    <div class="stack small">
-      <p><strong>Project:</strong> {{ fm.project or '' }}; 
-         <strong>Collection:</strong> {{ fm.collection or '' }}; 
-         <strong>Version:</strong> {{ fm.version or '' }}; 
-         <strong>Status:</strong> {{ fm.status or '' }}</p>
-      <p><strong>Created by:</strong> {{ fm.created_by or 'Bache Archive' }}; 
-         <strong>Purpose:</strong> {{ fm.purpose or '' }}</p>
-      <p><strong>Source policy:</strong> {{ fm.source_policy or '' }}</p>
-      {% if fm.about %}<p><strong>About:</strong> {{ fm.about }}</p>{% endif %}
-    </div>
-  </div>
-</section>
 
 <section class="section">
   <div class="md card">
@@ -73,6 +60,17 @@ HTML_TEMPLATE = """<!doctype html>
   </div>
 </section>
 
+{# --- About card placed near bottom, simplified to a single line --- #}
+{% if about_text %}
+<section class="section doc-meta" aria-labelledby="doc-meta-title">
+  <div class="card">
+    <h2 id="doc-meta-title">About this document</h2>
+    <p><strong>About:</strong> {{ about_text }}</p>
+  </div>
+</section>
+{% endif %}
+
+{# --- Fair Use card (only if not already present in the content) --- #}
 {% if not has_fair_use %}
 {% set fair_use_text = fm.fair_use or
   'Excerpts from <em>LSD and the Mind of the Universe</em> are reproduced here under the fair use doctrine for ' ~
@@ -88,31 +86,33 @@ HTML_TEMPLATE = """<!doctype html>
 {% endif %}
 
     <div class="footer muted">
-      Built by the Bache Archive · <a href="{{ base_url }}/">Home</a>
+      Built by the Bache Archive · <a href="{{ edu_home }}">Home</a>
     </div>
   </div>
 </body>
 </html>
 """
 
-def read(p):
+def read(p: str) -> str:
     with open(p, "r", encoding="utf-8") as f:
         return f.read()
 
-def write(p, s):
+def write(p: str, s: str) -> None:
     with open(p, "w", encoding="utf-8") as f:
         f.write(s)
 
 def parse_md(md: str) -> Tuple[Dict, str]:
+    """Return (front_matter_dict, markdown_body)."""
     m = FRONT_MATTER_RE.search(md)
     if not m:
         return {}, md
     fm = yaml.safe_load(m.group(1)) or {}
-    if not isinstance(fm, dict): fm = {}
+    if not isinstance(fm, dict):
+        fm = {}
     return fm, md[m.end():]
 
-def needs_lsdmu_note(fm: Dict, body: str) -> bool:
-    hay = ((fm.get("about") or "") + " " + body).lower()
+def needs_lsdmu_note_func(fm: Dict, body_md: str) -> bool:
+    hay = ((fm.get("about") or "") + " " + body_md).lower()
     return LSDMU_PHRASE.lower() not in hay
 
 def contains_fair_use(body_md: str, body_html: str) -> bool:
@@ -121,20 +121,20 @@ def contains_fair_use(body_md: str, body_html: str) -> bool:
     - Matches headings like '## Fair Use', '## Fair Use Notice', case-insensitive.
     - Also checks rendered HTML for <h2>…Fair Use…</h2>.
     """
-    # Markdown heading check
     md_head_re = re.compile(r"^\s{0,3}#{2,6}\s+fair\s+use(\s+notice)?\b", re.I | re.M)
     if md_head_re.search(body_md):
         return True
-    # HTML heading check
     html_head_re = re.compile(r"<h[1-6][^>]*>\s*fair\s+use(\s+notice)?\s*</h[1-6]>", re.I)
     if html_head_re.search(body_html):
         return True
     return False
 
 def render_html(fm: Dict, body_md: str, base_url: str) -> str:
+    # Ensure an id exists
     if not fm.get("id"):
-        fm["id"] = (fm.get("title") or "topic").lower().replace(" ", "-")
+        fm["id"] = (fm.get("title") or "topic").strip().lower().replace(" ", "-")
 
+    # Render Markdown body
     body_html = markdown(
         body_md,
         extensions=[
@@ -145,8 +145,13 @@ def render_html(fm: Dict, body_md: str, base_url: str) -> str:
             "toc",
             "md_in_html",
         ],
-        output_format="xhtml"
+        output_format="xhtml",
     )
+
+    # About text: prefer front matter 'about', else None (no About card)
+    about_text = (fm.get("about") or "").strip()
+    if not about_text:
+        about_text = None
 
     tmpl = Template(HTML_TEMPLATE)
     html = tmpl.render(
@@ -154,8 +159,10 @@ def render_html(fm: Dict, body_md: str, base_url: str) -> str:
         body_html=body_html,
         base_url=base_url.rstrip("/"),
         lsdmu_phrase=LSDMU_PHRASE,
-        needs_lsdmu_note=needs_lsdmu_note(fm, body_md),
+        needs_lsdmu_note=needs_lsdmu_note_func(fm, body_md),
         has_fair_use=contains_fair_use(body_md, body_html),
+        about_text=about_text,
+        edu_home=EDU_HOME,
     )
     return html
 
@@ -180,7 +187,11 @@ def main():
     if args.topic:
         folders = [os.path.join(root, args.topic)]
     else:
-        folders = [os.path.join(root, d) for d in sorted(os.listdir(root)) if os.path.isdir(os.path.join(root, d))]
+        folders = [
+            os.path.join(root, d)
+            for d in sorted(os.listdir(root))
+            if os.path.isdir(os.path.join(root, d))
+        ]
 
     for folder in folders:
         print(build_topic(folder, base_url=args.base_url))
