@@ -1,0 +1,47 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Python virtual environment
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local environment / test configs
+.env
+.env.local
+.env.*
+*.log
+
+# Generated or local working artifacts (not needed in repo)
+docs/educational/
+reports/quote_packs/
+backups/sources_json/
+
+# Cache and temporary files
+.cache/
+tmp/
+temp/
+*.old
+*.orig
+
+# OS-specific metadata
+.Trashes
+.Spotlight-V100
+.VolumeIcon.icns

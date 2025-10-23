@@ -1,11 +1,17 @@
-# Legal Notice — Educational Docs
+# LEGAL NOTICE — Educational Use of Quoted Material
 
-These documents quote short passages from *LSD and the Mind of the Universe*  
-(© 2019 Christopher M. Bache) for non-commercial educational analysis.
+This repository reproduces excerpts from *LSD and the Mind of the Universe* (2019) by Christopher M. Bache under **Fair Use** for educational commentary.
 
-- **License:** Creative Commons Attribution-NonCommercial 4.0 (CC BY-NC 4.0)  
-- **Purpose:** Scholarship and public understanding of consciousness research  
-- **Limitations:** No commercial reuse of quoted material. Book citations retain their original copyright.  
-- **Transcripts:** All talk transcripts remain public domain and are archived separately in  
-  [`bache-archive/chris-bache-archive`](https://github.com/bache-archive/chris-bache-archive).
+These quotations are used solely for:
+- Non-commercial educational purposes,
+- Critical analysis and interpretation,
+- Cultural and spiritual research,
+- Historical preservation of psychedelic and consciousness studies.
 
+No express permission from the rights holder is implied or required under 17 U.S.C. §107.  
+The amount of quoted material has been minimized and is always contextualized with scholarly purpose.
+
+If you are a rights holder and believe any use exceeds fair-use boundaries, please contact:
+📧 **bache-archive@tuta.com**
+
+We will respond promptly to review or adjust the content in question.
