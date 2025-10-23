@@ -1,29 +1,112 @@
-<!doctype html><html lang="en"><meta charset="utf-8">
-<title>Educational Documents — Chris Bache</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="assets/style.css">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Educational Documents — Bache Archive</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="assets/style.css">
+</head>
 <body>
-<header><h1>Educational Documents</h1><p>Topic index</p></header>
-<main><ul>
-  <li><a href="docs/educational/archetypal-and-collective-realities/">Archetypal And Collective Realities</a></li>
-  <li><a href="docs/educational/astrology/">Astrology</a></li>
-  <li><a href="docs/educational/atman-brahman/">Atman Brahman</a></li>
-  <li><a href="docs/educational/chod/">Chod</a></li>
-  <li><a href="docs/educational/diamond-luminosity/">Diamond Luminosity</a></li>
-  <li><a href="docs/educational/dose-retrospective/">Dose Retrospective</a></li>
-  <li><a href="docs/educational/energy-accumulation/">Energy Accumulation</a></li>
-  <li><a href="docs/educational/evolution-of-the-species-mind/">Evolution Of The Species Mind</a></li>
-  <li><a href="docs/educational/feminine-divine-cosmic-birth/">Feminine Divine Cosmic Birth</a></li>
-  <li><a href="docs/educational/future-human/">Future Human</a></li>
-  <li><a href="docs/educational/great-death-and-rebirth/">Great Death And Rebirth</a></li>
-  <li><a href="docs/educational/grof-coex/">Grof Coex</a></li>
-  <li><a href="docs/educational/integration-and-return/">Integration And Return</a></li>
-  <li><a href="docs/educational/journey-structure/">Journey Structure</a></li>
-  <li><a href="docs/educational/nature-of-consciousness/">Nature Of Consciousness</a></li>
-  <li><a href="docs/educational/ocean-of-suffering/">Ocean Of Suffering</a></li>
-  <li><a href="docs/educational/psychedelics-and-spiritual-evolution/">Psychedelics And Spiritual Evolution</a></li>
-  <li><a href="docs/educational/shamanic-persona/">Shamanic Persona</a></li>
-  <li><a href="docs/educational/universe-as-a-school/">Universe As A School</a></li>
-  <li><a href="docs/educational/vajrayana/">Vajrayana</a></li></ul></main>
-<footer><p>&copy; Bache Archive. Educational materials are fair-use commentary. See <a href="LEGAL_NOTICE.md">LEGAL_NOTICE.md</a>.</p></footer>
-</body></html>
+  <div class="container">
+    <header class="hero" aria-labelledby="page-title">
+      <span class="pill">Educational Docs</span>
+      <h1 id="page-title" class="title">Bache Archive — Educational Documents</h1>
+      <p class="subtitle">
+        Scholarly, citation-grounded topic pages synthesizing Christopher M. Bache’s
+        <em>LSD and the Mind of the Universe (LSDMU)</em> and public talks (2014–2025).
+        Book quotes are primary; talks add context.
+      </p>
+      <div class="btnrow">
+        <a class="btn-outline" href="README.md">Project README</a>
+        <a class="btn-outline" href="LEGAL_NOTICE.md">Legal Notice</a>
+        <a class="btn-outline" href="LICENSE.md">License</a>
+      </div>
+    </header>
+
+    <!-- About card (concise) -->
+    <section class="section doc-meta" aria-labelledby="about-docs">
+      <div class="card">
+        <h2 id="about-docs">About these documents</h2>
+        <p><strong>About:</strong> Each page is a book-first, provenance-aware summary designed for research, teaching, and RAG systems.</p>
+      </div>
+    </section>
+
+    <!-- Filter + topics -->
+    <section class="section" aria-labelledby="topics-title">
+      <div class="card">
+        <h2 id="topics-title">Topics <span class="muted mono" id="count">(loading…)</span></h2>
+        <div class="stack" style="margin-top:.5rem;">
+          <input id="filter" type="search" placeholder="Filter topics… (e.g., Diamond, Vajrayana, Future Human)"
+                 style="padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:transparent;color:var(--text);">
+          <!-- Grid of topic cards; uses inline grid so we don't need to alter CSS -->
+          <div id="grid" class="stack" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;">
+            <!-- topic cards -->
+            <a class="card" href="docs/educational/archetypal-and-collective-realities/"><strong>Archetypal and Collective Realities</strong><br><span class="muted">Archetypal & species psyche</span></a>
+            <a class="card" href="docs/educational/astrology/"><strong>Astrology</strong><br><span class="muted">Cosmic timing metaphors</span></a>
+            <a class="card" href="docs/educational/atman-brahman/"><strong>Atman Brahman</strong><br><span class="muted">Nondual identity</span></a>
+            <a class="card" href="docs/educational/chod/"><strong>Chöd</strong><br><span class="muted">Cutting through</span></a>
+            <a class="card" href="docs/educational/diamond-luminosity/"><strong>Diamond Luminosity</strong><br><span class="muted">Clarity & radiance</span></a>
+            <a class="card" href="docs/educational/dose-retrospective/"><strong>Dose Retrospective</strong><br><span class="muted">Practice arc</span></a>
+            <a class="card" href="docs/educational/energy-accumulation/"><strong>Energy Accumulation</strong><br><span class="muted">Cultivating capacity</span></a>
+            <a class="card" href="docs/educational/evolution-of-the-species-mind/"><strong>Evolution of the Species Mind</strong><br><span class="muted">Collective development</span></a>
+            <a class="card" href="docs/educational/feminine-divine-cosmic-birth/"><strong>Feminine Divine Cosmic Birth</strong><br><span class="muted">Birthing imagery</span></a>
+            <a class="card" href="docs/educational/future-human/"><strong>Future Human</strong><br><span class="muted">Diamond Soul civilization</span></a>
+            <a class="card" href="docs/educational/great-death-and-rebirth/"><strong>Great Death and Rebirth</strong><br><span class="muted">Purification cycles</span></a>
+            <a class="card" href="docs/educational/grof-coex/"><strong>Grof COEX</strong><br><span class="muted">Systems of experience</span></a>
+            <a class="card" href="docs/educational/integration-and-return/"><strong>Integration and Return</strong><br><span class="muted">Aftercare & praxis</span></a>
+            <a class="card" href="docs/educational/journey-structure/"><strong>Journey Structure</strong><br><span class="muted">Session architecture</span></a>
+            <a class="card" href="docs/educational/nature-of-consciousness/"><strong>Nature of Consciousness</strong><br><span class="muted">Ontological scope</span></a>
+            <a class="card" href="docs/educational/ocean-of-suffering/"><strong>Ocean of Suffering</strong><br><span class="muted">Redemptive suffering</span></a>
+            <a class="card" href="docs/educational/psychedelics-and-spiritual-evolution/"><strong>Psychedelics and Spiritual Evolution</strong><br><span class="muted">Practice & growth</span></a>
+            <a class="card" href="docs/educational/shamanic-persona/"><strong>Shamanic Persona</strong><br><span class="muted">Role & responsibility</span></a>
+            <a class="card" href="docs/educational/universe-as-a-school/"><strong>Universe as a School</strong><br><span class="muted">Learning cosmos</span></a>
+            <a class="card" href="docs/educational/vajrayana/"><strong>Vajrayana</strong><br><span class="muted">Tantric frames</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card">
+        <h2>Fair Use Notice</h2>
+        <p>Excerpts from <em>LSD and the Mind of the Universe</em> are reproduced under the fair use doctrine for <strong>educational and scholarly purposes</strong>. All quotations remain the intellectual property of their rights holders.</p>
+      </div>
+    </section>
+
+    <div class="footer muted">
+      Built by the Bache Archive · <a href="./">Home</a>
+    </div>
+  </div>
+
+  <script>
+    // Simple live filter for topic cards
+    const input = document.getElementById('filter');
+    const grid  = document.getElementById('grid');
+    const cards = Array.from(grid.querySelectorAll('.card'));
+    const count = document.getElementById('count');
+
+    function applyFilter() {
+      const q = (input.value || '').toLowerCase().trim();
+      let visible = 0;
+      cards.forEach(c => {
+        const text = c.textContent.toLowerCase();
+        const show = !q || text.includes(q);
+        c.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      count.textContent = visible + ' topic' + (visible===1?'':'s');
+    }
+
+    input.addEventListener('input', applyFilter);
+    window.addEventListener('DOMContentLoaded', () => {
+      applyFilter();
+      // keyboard shortcut: "/" focuses search like many docs sites
+      window.addEventListener('keydown', (e) => {
+        if (e.key === '/' && document.activeElement !== input) {
+          e.preventDefault(); input.focus();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

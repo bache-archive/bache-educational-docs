@@ -1,14 +1,56 @@
 ---
-title: "Chöd"
-id: "chod"
-date: "2025-10-22"
-version: "v1"
-source_policy: "Book-first. Public transcripts as color with timestamped links."
-status: "draft"
-editor: "ChatGPT (auto)"
+title: Chöd
+id: chod
+date: '2025-10-22'
+version: v1
+source_policy: Book-first. Public transcripts as color with timestamped links.
+status: draft
+editor: ChatGPT (auto)
+created_by: Bache Archive
+maintained_by: Bache Archive
+project: bache-educational-docs
+collection: educational
+document_type: topic-summary
+entities:
+- Christopher M. Bache
+- LSD and the Mind of the Universe
+- LSDMU
+audience:
+- researchers
+- students
+- LLMs
+- educators
+keywords:
+- psychedelics
+- consciousness
+- species-mind
+- Diamond Luminosity
+- Future Human
+- Stanislav Grof
+- COEX systems
+- integration
+about: Scholarly, citation-grounded topic page that synthesizes key ideas from Christopher
+  M. Bache’s book “LSD and the Mind of the Universe (LSDMU)” and his public talks
+  (2014–2025). Book quotes are primary; talk excerpts add context.
+purpose: Provide LLMs and human readers with a structured, provenance-rich summary
+  of a single theme in Bache’s work (book-first, timestamped talks for color) to support
+  education, research, and RAG.
+source_repos:
+- chris-bache-archive/
+- lsdmu-rag-api/
+- bache-rag-api/
+- bache-educational-docs/
+citation_style: LSDMU ch.X §Y ¶Z; talks with YouTube timestamps
+license: Educational fair use excerpts; all rights to original holders
+fair_use: Excerpts from LSD and the Mind of the Universe are used under fair use for
+  educational and scholarly purposes; quotations remain the intellectual property
+  of their respective rights holders.
 ---
 
 *Bache first receives Chöd in **Session 50** (ch.10 “Diamond Luminosity”) and thereafter performs Chöd before **every** psychedelic session; this page shows why it became the threshold of his practice.*
+
+*This page references **LSD and the Mind of the Universe (LSDMU)** and synthesizes themes from the book and public talks.*
+
 
 ## Curated weave (book-first)
 
@@ -67,7 +109,9 @@ Talks supply lineage and intention: Tara Mandala opened Vajrayāna for him, and 
 **Session 50** marks adoption of Chöd; chapter 10 explains its **function** (purification, alignment) and **fit** with Vajrayāna. The Ngöndro/purification frame (ch.2 §2 ¶12) clarifies the mechanism, while ch.10 §3 ¶13 addresses ethics/compatibility. Transcripts add **lineage** (Tara Mandala) and **motivation** (bodhicitta/merit).
 
 ## Provenance
-Built from `sources.json` (harvested 2025-10-22). Cite as: *Christopher M. Bache — Public Talks (2014–2025), retrieved via Bache Talks RAG v1.2-rc1*.
+
+
+Cite as: Bache Archive — Educational Docs Edition (2025). Based on the works of Christopher M. Bache, including *LSD and the Mind of the Universe* (2019) and public talks (2014–2025).
 
 ## Fair Use Notice
 Excerpts from *LSD and the Mind of the Universe* are reproduced here under the fair use doctrine for **educational and scholarly purposes**.

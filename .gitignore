@@ -30,7 +30,6 @@ dist/
 *.log
 
 # Generated or local working artifacts (not needed in repo)
-docs/educational/
 reports/quote_packs/
 backups/sources_json/
 
