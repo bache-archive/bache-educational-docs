@@ -1,5 +1,5 @@
 ---
-title: Atman Brahman
+title: Atman is Brahman
 id: atman-brahman
 date: '2025-10-22'
 version: v1
