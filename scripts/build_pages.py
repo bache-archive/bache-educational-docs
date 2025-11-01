@@ -1,25 +1,20 @@
 #!/usr/bin/env python3
 """
-build_pages.py
+build_pages.py — render docs/educational/*/index.md -> index.html
+Version: v1.0.1 (bache-educational-docs)
 
-Reusable builder: converts index.md (with YAML front matter) to index.html
-for each topic in docs/educational/*/.
-
-Improvements in this version:
-- Header: single 'Home' button to the Educational Docs homepage (no Markdown / sources links).
-- About card: simplified to a single 'About:' line and placed near the bottom (above Fair Use).
-- Fair Use: injected only if the Markdown does not already contain a Fair Use section.
-- Footer: 'Built by the Bache Archive' with Home linking to the Educational Docs homepage.
-- Optional note near the subtitle to ensure 'LSD and the Mind of the Universe (LSDMU)' appears at least once.
+- Embeds Wikidata QIDs in JSON-LD (schema.org CreativeWork) and meta tags.
+- Identifiers card is hidden by default; show per page with front matter:
+    show_identifiers: true
 
 Usage:
-  python scripts/build_pages.py --root docs/educational --base-url /chris-bache-archive
-  python scripts/build_pages.py --root docs/educational --topic future-human --base-url /chris-bache-archive
+  python scripts/build_pages.py --root docs/educational --base-url /bache-educational-docs
+  python scripts/build_pages.py --root docs/educational --topic future-human --base-url /bache-educational-docs
 """
 
 from __future__ import annotations
-import argparse, os, re
-from typing import Dict, Tuple
+import argparse, os, re, json
+from typing import Dict, Tuple, List
 import yaml
 from markdown import markdown
 from jinja2 import Template
@@ -30,6 +25,9 @@ LSDMU_PHRASE = "LSD and the Mind of the Universe (LSDMU)"
 # Absolute homepage link for the footer and hero button
 EDU_HOME = "https://bache-archive.github.io/bache-educational-docs/"
 
+# Default: do NOT show identifiers card unless page opts in via `show_identifiers: true`
+DEFAULT_SHOW_IDENTIFIERS = False
+
 HTML_TEMPLATE = """<!doctype html>
 <html lang="en">
 <head>
@@ -39,6 +37,19 @@ HTML_TEMPLATE = """<!doctype html>
   <link rel="canonical" href="{{ base_url }}/docs/educational/{{ fm.id }}/" />
   <meta name="description" content="Readable, styled pages from the Bache Archive." />
   <link rel="stylesheet" href="{{ base_url }}/assets/style.css">
+
+  {# --- Wikidata convenience meta tags --- #}
+  {% if wikidata_author_qid %}
+  <meta name="wikidata:author" content="{{ wikidata_author_qid }}">
+  {% endif %}
+  {% if related_qids and related_qids|length > 0 %}
+  <meta name="wikidata:relatedWorks" content="{{ related_qids|join(',') }}">
+  {% endif %}
+
+  {# --- JSON-LD (schema.org CreativeWork) with Wikidata links --- #}
+  <script type="application/ld+json">
+  {{ jsonld | safe }}
+  </script>
 </head>
 <body>
   <div class="container">
@@ -46,7 +57,7 @@ HTML_TEMPLATE = """<!doctype html>
   <span class="pill">Educational Topic</span>
   <h1 id="page-title" class="title">{{ fm.title }}</h1>
   <p class="subtitle">
-    What does <strong>Chris Bache</strong> say about <strong>{{ fm.title }}</strong>? 
+    What does <strong>Chris Bache</strong> say about <strong>{{ fm.title }}</strong>?
     {% if needs_lsdmu_note %}This page references <strong>{{ lsdmu_phrase }}</strong>.{% endif %}
   </p>
   <div class="btnrow">
@@ -59,6 +70,29 @@ HTML_TEMPLATE = """<!doctype html>
     {{ body_html }}
   </div>
 </section>
+
+{# --- Optional Identifiers card (hidden by default; enable with show_identifiers: true) --- #}
+{% if show_identifiers_card and (wikidata_author_qid or (related_qids and related_qids|length > 0)) %}
+<section class="section doc-meta" aria-labelledby="identifiers-title">
+  <div class="card">
+    <h2 id="identifiers-title">Identifiers</h2>
+    <ul class="muted">
+      {% if wikidata_author_qid %}
+      <li>Author (Wikidata): <a href="https://www.wikidata.org/wiki/{{ wikidata_author_qid }}">{{ wikidata_author_qid }}</a></li>
+      {% endif %}
+      {% if related_qids %}
+      <li>Related works:
+        <ul>
+          {% for q in related_qids %}
+          <li><a href="https://www.wikidata.org/wiki/{{ q }}">{{ q }}</a></li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+</section>
+{% endif %}
 
 {# --- About card placed near bottom, simplified to a single line --- #}
 {% if about_text %}
@@ -116,11 +150,7 @@ def needs_lsdmu_note_func(fm: Dict, body_md: str) -> bool:
     return LSDMU_PHRASE.lower() not in hay
 
 def contains_fair_use(body_md: str, body_html: str) -> bool:
-    """
-    Detect if the Markdown/HTML already contains a 'Fair Use' section.
-    - Matches headings like '## Fair Use', '## Fair Use Notice', case-insensitive.
-    - Also checks rendered HTML for <h2>…Fair Use…</h2>.
-    """
+    """Detect if the Markdown/HTML already contains a 'Fair Use' section."""
     md_head_re = re.compile(r"^\s{0,3}#{2,6}\s+fair\s+use(\s+notice)?\b", re.I | re.M)
     if md_head_re.search(body_md):
         return True
@@ -128,6 +158,46 @@ def contains_fair_use(body_md: str, body_html: str) -> bool:
     if html_head_re.search(body_html):
         return True
     return False
+
+def make_jsonld(fm: Dict, wikidata_author_qid: str|None, related_qids: List[str]) -> str:
+    """
+    Build a schema.org CreativeWork JSON-LD block with Wikidata linkages.
+    - author.sameAs -> https://www.wikidata.org/entity/Q...
+    - mentions -> each related work as a CreativeWork with sameAs to Wikidata
+    """
+    topic_id = fm.get("id") or (fm.get("title") or "topic").strip().lower().replace(" ", "-")
+
+    author_obj = None
+    if wikidata_author_qid:
+        author_obj = {
+            "@type": "Person",
+            "name": "Christopher M. Bache",
+            "sameAs": f"https://www.wikidata.org/entity/{wikidata_author_qid}",
+        }
+
+    mentions = [{"@type": "CreativeWork", "sameAs": f"https://www.wikidata.org/entity/{q}"} for q in related_qids]
+
+    data = {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": fm.get("title") or "Educational Topic",
+        "identifier": topic_id,
+        "about": fm.get("about") or None,
+        "inLanguage": "en",
+        "isPartOf": {
+            "@type": "CreativeWork",
+            "name": "Bache Educational Documents",
+            "url": "https://bache-archive.github.io/bache-educational-docs/"
+        },
+    }
+    if author_obj:
+        data["author"] = author_obj
+    if mentions:
+        data["mentions"] = mentions
+
+    # drop None fields
+    data = {k: v for k, v in data.items() if v not in (None, [], {})}
+    return json.dumps(data, ensure_ascii=False, indent=2)
 
 def render_html(fm: Dict, body_md: str, base_url: str) -> str:
     # Ensure an id exists
@@ -137,21 +207,26 @@ def render_html(fm: Dict, body_md: str, base_url: str) -> str:
     # Render Markdown body
     body_html = markdown(
         body_md,
-        extensions=[
-            "extra",
-            "sane_lists",
-            "attr_list",
-            "footnotes",
-            "toc",
-            "md_in_html",
-        ],
+        extensions=["extra", "sane_lists", "attr_list", "footnotes", "toc", "md_in_html"],
         output_format="xhtml",
     )
 
-    # About text: prefer front matter 'about', else None (no About card)
-    about_text = (fm.get("about") or "").strip()
-    if not about_text:
-        about_text = None
+    # Optional About card text
+    about_text = (fm.get("about") or "").strip() or None
+
+    # Wikidata fields from front matter
+    wikidata_author_qid = (fm.get("wikidata_author") or "").strip() or None
+    related_qids = fm.get("related_works") or []
+    if isinstance(related_qids, str):
+        related_qids = [s.strip() for s in related_qids.split(",") if s.strip()]
+    elif not isinstance(related_qids, list):
+        related_qids = []
+
+    # Build JSON-LD
+    jsonld = make_jsonld(fm, wikidata_author_qid, related_qids)
+
+    # Per-page toggle for identifiers card
+    show_identifiers = bool(fm.get("show_identifiers", DEFAULT_SHOW_IDENTIFIERS))
 
     tmpl = Template(HTML_TEMPLATE)
     html = tmpl.render(
@@ -163,6 +238,10 @@ def render_html(fm: Dict, body_md: str, base_url: str) -> str:
         has_fair_use=contains_fair_use(body_md, body_html),
         about_text=about_text,
         edu_home=EDU_HOME,
+        wikidata_author_qid=wikidata_author_qid,
+        related_qids=related_qids,
+        jsonld=jsonld,
+        show_identifiers_card=show_identifiers,
     )
     return html
 
@@ -173,14 +252,15 @@ def build_topic(folder: str, base_url: str) -> str:
 
     fm, body = parse_md(read(md_path))
     html = render_html(fm, body, base_url=base_url)
-    write(os.path.join(folder, "index.html"), html)
-    return f"✓ {os.path.basename(folder)}"
+    out_path = os.path.join(folder, "index.html")
+    write(out_path, html)
+    return f"✓ {os.path.basename(folder)} -> {out_path}"
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", required=True, help="Path to docs/educational")
     ap.add_argument("--topic", help="Build only this topic folder name")
-    ap.add_argument("--base-url", default="/chris-bache-archive", help="Base URL for canonical + CSS")
+    ap.add_argument("--base-url", default="/bache-educational-docs", help="Base URL for canonical + CSS")
     args = ap.parse_args()
 
     root = args.root.rstrip("/")
