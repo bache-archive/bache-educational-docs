@@ -17,6 +17,23 @@ These documents combine **verbatim book citations** (used under Fair Use) with *
 
 ---
 
+### 🔗 Wikidata Cross-References
+
+- **Author:** [Christopher Martin Bache (Q112496741)](https://www.wikidata.org/wiki/Q112496741)
+
+**Books represented in educational materials**
+| Title | Year | Publisher | QID |
+|-------|------|------------|------|
+| [*LSD and the Mind of the Universe: Diamonds from Heaven*](https://www.wikidata.org/wiki/Q136684740) | 2019 | Park Street Press | Q136684740 |
+| [*Dark Night, Early Dawn: Steps to a Deep Ecology of Mind*](https://www.wikidata.org/wiki/Q136684765) | 2000 | SUNY Press | Q136684765 |
+| [*The Living Classroom: Teaching and Collective Consciousness*](https://www.wikidata.org/wiki/Q136684793) | 2008 | SUNY Press | Q136684793 |
+| [*Lifecycles: Reincarnation and the Web of Life*](https://www.wikidata.org/wiki/Q136684807) | 1991 | Paragon House | Q136684807 |
+
+Aliases:
+- **LSD and the Mind of the Universe** — also known as *LSDMU*
+
+---
+
 ## Repository Structure
 
 bache-educational-docs/
@@ -43,9 +60,9 @@ bache-educational-docs/
 └── CHANGELOG.md
 
 Each topic folder (e.g., `future-human`, `vajrayana`) contains:
-1. **index.md** — canonical Markdown version for citation and editing.  
-2. **index.html** — rendered version for GitHub Pages.  
-3. **sources.json** — structured provenance metadata for that topic.
+1. **index.md** — canonical Markdown version for citation and editing  
+2. **index.html** — rendered version for GitHub Pages  
+3. **sources.json** — structured provenance metadata for that topic  
 
 ---
 
@@ -53,23 +70,21 @@ Each topic folder (e.g., `future-human`, `vajrayana`) contains:
 
 - **Book-first accuracy** — Citations from *LSD and the Mind of the Universe* are reproduced verbatim with chapter (§) and paragraph (¶) references.  
 - **Talk alignment** — Transcript excerpts are timestamped and verified against original YouTube recordings.  
-- **Human refinement** — GPT-5 aided review ensures coherence, sentence completion, and removal of irrelevant fragments.  
+- **Human refinement** — GPT-5 aided review ensures coherence and clarity.  
 - **No hallucination** — Every quote is traceable; all commentary is interpretive, not generative.  
-- **Transparency** — Each document lists its sources, licensing, and provenance.
+- **Transparency** — Each document lists its sources, licensing, and provenance.  
 
 ---
 
 ## Licensing Overview
 
-This repository uses a **hybrid licensing model** to balance openness with legal respect for copyrighted work.
-
 | Component | License | Notes |
 |------------|----------|-------|
 | **Book quotations** | *Fair Use* (17 U.S.C. §107) | Reproduced in limited quantity for educational commentary. © Christopher M. Bache & publisher. |
-| **Transcript excerpts & metadata** | **CC0 1.0 Universal (Public Domain Dedication)** | From the [Chris Bache Archive](https://github.com/bache-archive/chris-bache-archive). |
-| **Editorial commentary, structure, and code** | **CC BY-NC-SA 4.0** | Attribution required; non-commercial; share-alike. |
+| **Transcript excerpts & metadata** | **CC0 1.0 Universal** | From the [Chris Bache Archive](https://github.com/bache-archive/chris-bache-archive). |
+| **Editorial commentary & structure** | **CC BY-NC-SA 4.0** | Attribution required; non-commercial; share-alike. |
 
-> This combination ensures legal safety while keeping all educational materials open and remixable for non-commercial study.
+> This combination ensures legal safety while keeping educational materials open and remixable for non-commercial study.
 
 See [LICENSE](./LICENSE) and [LEGAL_NOTICE.md](./LEGAL_NOTICE.md) for complete terms.
 
@@ -79,11 +94,11 @@ See [LICENSE](./LICENSE) and [LEGAL_NOTICE.md](./LEGAL_NOTICE.md) for complete t
 
 | Repository | Focus | License |
 |-------------|--------|----------|
-| [**chris-bache-archive**](https://github.com/bache-archive/chris-bache-archive) | Public-domain transcripts, captions, diarist files, and vectors | CC0 1.0 |
+| [**chris-bache-archive**](https://github.com/bache-archive/chris-bache-archive) | Public-domain transcripts, captions, and vectors | CC0 1.0 |
 | **bache-educational-docs** | Educational commentary quoting *LSD and the Mind of the Universe* | Fair Use (book) + CC BY-NC-SA (commentary) |
 
-- The **main archive** preserves the factual, verified record.  
-- The **educational repo** interprets it, connecting *book* and *talk* content into cohesive themes.
+- The **main archive** preserves the verified record.  
+- The **educational repo** interprets it — linking book and talk content into cohesive themes.  
 
 ---
 
@@ -91,9 +106,9 @@ See [LICENSE](./LICENSE) and [LEGAL_NOTICE.md](./LEGAL_NOTICE.md) for complete t
 
 1. **Harvest** — Retrieve relevant book paragraphs and talk segments from the RAG index.  
 2. **Merge** — Combine and align related citations under one topic.  
-3. **Refine** — Human + GPT-5 editorial review removes noise and incomplete sentences.  
-4. **Render** — Markdown to HTML using consistent formatting and metadata headers.  
-5. **Publish** — GitHub Pages site automatically rebuilt on commit.
+3. **Refine** — Human + GPT-5 review removes noise and ensures readability.  
+4. **Render** — Markdown → HTML using consistent format and metadata headers.  
+5. **Publish** — GitHub Pages site rebuilds automatically on commit.  
 
 ---
 
@@ -104,30 +119,30 @@ See [LICENSE](./LICENSE) and [LEGAL_NOTICE.md](./LEGAL_NOTICE.md) for complete t
 - [Grof and COEX Systems](./docs/educational/grof-coex/index.md)  
 - [The Great Death and Rebirth](./docs/educational/great-death-and-rebirth/index.md)  
 - [Vajrayana](./docs/educational/vajrayana/index.md)  
-- [Energy Accumulation](./docs/educational/energy-accumulation/index.md)
+- [Energy Accumulation](./docs/educational/energy-accumulation/index.md)  
 
-Each is designed as a **self-contained educational module**, linking directly to public talks and citing the exact paragraphs of the book.
+Each is a **self-contained educational module**, linking directly to public talks and book paragraphs.
 
 ---
 
 ## Citation Format
 
-**Book reference:**
+**Book reference:**  
 > LSDMU ch.10 §3 ¶14 — “Though I did not pay it much attention at the time…”
 
-**Talk reference:**
+**Talk reference:**  
 > [2020-01-10 – *Prof. Dr. Christopher Bache about his work and consciousness*](https://youtu.be/QaBoLNV4FQI?t=20)
 
 ---
 
 ## Contribution
 
-Contributions are welcome — especially for:
+Contributions welcome for:  
 - Fixing or clarifying citations  
 - Adding timestamps to talk references  
 - Proposing new educational topics  
 
-When contributing, please preserve the citation style and include clear sourcing.
+When contributing, preserve the citation style and include clear sources.
 
 ---
 
