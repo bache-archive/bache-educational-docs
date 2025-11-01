@@ -156,3 +156,8 @@ GitHub: [@bache-archive](https://github.com/bache-archive)
 
 *This repository continues the mission of the Chris Bache Archive:  
 to preserve and transmit the insights of a modern mystic — clearly, faithfully, and freely for education.*
+
+---
+All Wikidata QIDs and identifiers in this repository are maintained in the canonical registry:
+[bache-archive-meta](https://github.com/bache-archive/bache-archive-meta)
+
