@@ -5,6 +5,41 @@
   <title>Educational Documents — Bache Archive</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="stylesheet" href="assets/style.css">
+
+  <!-- Wikidata / FAIR metadata -->
+  <meta name="wikidata:author" content="Q112496741">
+  <meta name="wikidata:relatedWorks" content="Q136684740,Q136684765,Q136684793,Q136684807">
+
+  <!-- JSON-LD (schema.org CreativeWorkSeries) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWorkSeries",
+    "name": "Bache Educational Documents",
+    "description": "Scholarly, citation-grounded topic pages synthesizing Christopher M. Bache’s LSD and the Mind of the Universe and his public talks (2009–2025).",
+    "creator": {
+      "@type": "Person",
+      "name": "Christopher M. Bache",
+      "sameAs": "https://www.wikidata.org/entity/Q112496741"
+    },
+    "isPartOf": {
+      "@type": "CreativeWork",
+      "name": "Bache Archive Project",
+      "url": "https://bache-archive.github.io/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Bache Archive"
+    },
+    "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "about": [
+      {"@type": "CreativeWork","sameAs":"https://www.wikidata.org/entity/Q136684740"},
+      {"@type": "CreativeWork","sameAs":"https://www.wikidata.org/entity/Q136684765"},
+      {"@type": "CreativeWork","sameAs":"https://www.wikidata.org/entity/Q136684793"},
+      {"@type": "CreativeWork","sameAs":"https://www.wikidata.org/entity/Q136684807"}
+    ]
+  }
+  </script>
 </head>
 <body>
   <div class="container">
@@ -13,7 +48,7 @@
       <h1 id="page-title" class="title">Bache Archive — Educational Documents</h1>
       <p class="subtitle">
         Scholarly, citation-grounded topic pages synthesizing Christopher M. Bache’s
-        <em>LSD and the Mind of the Universe (LSDMU)</em> and public talks (2014–2025).
+        <em>LSD and the Mind of the Universe (LSDMU)</em> and public talks (2009–2025).
         Book quotes are primary; talks add context.
       </p>
       <div class="btnrow">
@@ -23,7 +58,7 @@
       </div>
     </header>
 
-    <!-- About card (concise) -->
+    <!-- About card -->
     <section class="section doc-meta" aria-labelledby="about-docs">
       <div class="card">
         <h2 id="about-docs">About these documents</h2>
@@ -38,7 +73,6 @@
         <div class="stack" style="margin-top:.5rem;">
           <input id="filter" type="search" placeholder="Filter topics… (e.g., Diamond, Vajrayana, Future Human)"
                  style="padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:transparent;color:var(--text);">
-          <!-- Grid of topic cards; uses inline grid so we don't need to alter CSS -->
           <div id="grid" class="stack" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;">
             <!-- topic cards -->
             <a class="card" href="docs/educational/archetypal-and-collective-realities/"><strong>Archetypal and Collective Realities</strong><br><span class="muted">Archetypal & species psyche</span></a>
@@ -100,7 +134,7 @@
     input.addEventListener('input', applyFilter);
     window.addEventListener('DOMContentLoaded', () => {
       applyFilter();
-      // keyboard shortcut: "/" focuses search like many docs sites
+      // keyboard shortcut: "/" focuses search
       window.addEventListener('keydown', (e) => {
         if (e.key === '/' && document.activeElement !== input) {
           e.preventDefault(); input.focus();
