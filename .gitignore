@@ -47,3 +47,4 @@ temp/
 docs_educational.tar.gz
 # Ignore backup markdown files
 *.bak.*
+*.bak

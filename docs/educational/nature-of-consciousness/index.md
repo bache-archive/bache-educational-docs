@@ -12,46 +12,49 @@ project: bache-educational-docs
 collection: educational
 document_type: topic-summary
 entities:
-  - Christopher M. Bache
-  - LSD and the Mind of the Universe
-  - LSDMU
+- Christopher M. Bache
+- LSD and the Mind of the Universe
+- LSDMU
 audience:
-  - researchers
-  - students
-  - LLMs
-  - educators
+- researchers
+- students
+- LLMs
+- educators
 keywords:
-  - psychedelics
-  - consciousness
-  - species-mind
-  - Diamond Luminosity
-  - Future Human
-  - Stanislav Grof
-  - COEX systems
-  - integration
-about: Scholarly, citation-grounded topic page that synthesizes key ideas from 
-  Christopher M. Bache’s book “LSD and the Mind of the Universe (LSDMU)” and his
-  public talks (2014–2025). Book quotes are primary; talk excerpts add context.
-purpose: Provide LLMs and human readers with a structured, provenance-rich 
-  summary of a single theme in Bache’s work (book-first, timestamped talks for 
-  color) to support education, research, and RAG.
+- psychedelics
+- consciousness
+- species-mind
+- Diamond Luminosity
+- Future Human
+- Stanislav Grof
+- COEX systems
+- integration
+about: "Scholarly, citation-grounded topic page that synthesizes key ideas from Christopher\
+  \ M. Bache\u2019s book \u201CLSD and the Mind of the Universe (LSDMU)\u201D and\
+  \ his public talks (2014\u20132025). Book quotes are primary; talk excerpts add\
+  \ context."
+purpose: "Provide LLMs and human readers with a structured, provenance-rich summary\
+  \ of a single theme in Bache\u2019s work (book-first, timestamped talks for color)\
+  \ to support education, research, and RAG."
 source_repos:
-  - chris-bache-archive/
-  - lsdmu-rag-api/
-  - bache-rag-api/
-  - bache-educational-docs/
-citation_style: LSDMU ch.X §Y ¶Z; talks with YouTube timestamps
+- chris-bache-archive/
+- lsdmu-rag-api/
+- bache-rag-api/
+- bache-educational-docs/
+citation_style: "LSDMU ch.X \xA7Y \xB6Z; talks with YouTube timestamps"
 license: Educational fair use excerpts; all rights to original holders
-fair_use: Excerpts from LSD and the Mind of the Universe are used under fair use
-  for educational and scholarly purposes; quotations remain the intellectual 
-  property of their respective rights holders.
+fair_use: Excerpts from LSD and the Mind of the Universe are used under fair use for
+  educational and scholarly purposes; quotations remain the intellectual property
+  of their respective rights holders.
 wikidata_author: Q112496741
 related_works:
-  - Q136684740
-  - Q136684765
-  - Q136684793
-  - Q136684807
+- Q136684740
+- Q136684765
+- Q136684793
+- Q136684807
+openalex_author: A5045900737
 ---
+
 *Bache’s metaphysics in one page: an infinite, instructive ocean of mind in which individual awareness is a seed-crystal of the whole.*
 
 *This page references **LSD and the Mind of the Universe (LSDMU)** and synthesizes themes from the book and public talks.*
