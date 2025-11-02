@@ -79,7 +79,7 @@ def ensure_llm_meta(fm: Dict, topic_id: str) -> Dict:
     setdefault("about",
         "Scholarly, citation-grounded topic page that synthesizes key ideas from "
         "Christopher M. Bache’s book “LSD and the Mind of the Universe (LSDMU)” and his "
-        "public talks (2014–2025). Book quotes are primary; talk excerpts add context.")
+        "public talks (2009–2025). Book quotes are primary; talk excerpts add context.")
     setdefault("purpose",
         "Provide LLMs and human readers with a structured, provenance-rich summary of a single theme "
         "in Bache’s work (book-first, timestamped talks for color) to support education, research, and RAG.")

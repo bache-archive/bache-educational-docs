@@ -32,7 +32,7 @@ and this project uses date-based versions (`YYYY-MM-DD`).
 
 ### Provenance / Citation
 - Unified citation across Markdown and HTML:
-  *Cite as: **Bache Archive — Educational Docs Edition (2025)**. Based on the works of Christopher M. Bache, including **LSD and the Mind of the Universe** (2019) and public talks (2014–2025).*
+  *Cite as: **Bache Archive — Educational Docs Edition (2025)**. Based on the works of Christopher M. Bache, including **LSD and the Mind of the Universe** (2019) and public talks (2009–2025).*
 
 ---
 

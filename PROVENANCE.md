@@ -14,7 +14,7 @@ PROVENANCE.md
 
 ## 1 · Purpose
 
-This release establishes the first canonical, versioned edition of the **Bache Educational Docs**, a public collection of educational pages that synthesize and contextualize the ideas of **Christopher M. Bache**—especially as expressed in *LSD and the Mind of the Universe (2019)* and his public talks (2014 – 2025).
+This release establishes the first canonical, versioned edition of the **Bache Educational Docs**, a public collection of educational pages that synthesize and contextualize the ideas of **Christopher M. Bache**—especially as expressed in *LSD and the Mind of the Universe (2019)* and his public talks (2009–2025).
 
 Each document is designed for long-term scholarly reference and machine-assisted interpretation, providing a bridge between Bache’s written and spoken work.
 

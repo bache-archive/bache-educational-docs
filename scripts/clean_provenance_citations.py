@@ -3,7 +3,7 @@ import re, glob, io
 
 NEW_CITE = ("Cite as: Bache Archive — Educational Docs Edition (2025). "
             "Based on the works of Christopher M. Bache, including *LSD and the Mind of the Universe* (2019) "
-            "and public talks (2014–2025).")
+            "and public talks (2009–2025).")
 
 # --- Regexes ---
 # Remove "Built from sources.json ..." (Markdown)
@@ -16,7 +16,7 @@ RX_CITE_ANY = re.compile(r"Cite\s+as:[^\n<]*", re.I)
 
 # Remove legacy RAG tail if present anywhere
 RX_OLD_RAG = re.compile(
-    r"Christopher M\. Bache\s+—\s+Public Talks\s*\(2014–2025\)[^.<\n]*"
+    r"Christopher M\. Bache\s+—\s+Public Talks\s*\(2009–2025\)[^.<\n]*"
     r"(?:,?\s*retrieved[^.<\n]*)?\.*", re.I
 )
 
