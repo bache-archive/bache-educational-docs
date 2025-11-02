@@ -17,20 +17,24 @@ These documents combine **verbatim book citations** (used under Fair Use) with *
 
 ---
 
-### 🔗 Wikidata Cross-References
+### 🔗 Scholarly Identifiers
 
-- **Author:** [Christopher Martin Bache (Q112496741)](https://www.wikidata.org/wiki/Q112496741)
+- **Author:**  
+  - [Christopher Martin Bache — Wikidata (Q112496741)](https://www.wikidata.org/wiki/Q112496741)  
+  - [Christopher M. Bache — OpenAlex (A5045900737)](https://openalex.org/A5045900737)
 
 **Books represented in educational materials**
-| Title | Year | Publisher | QID |
-|-------|------|------------|------|
-| [*LSD and the Mind of the Universe: Diamonds from Heaven*](https://www.wikidata.org/wiki/Q136684740) | 2019 | Park Street Press | Q136684740 |
-| [*Dark Night, Early Dawn: Steps to a Deep Ecology of Mind*](https://www.wikidata.org/wiki/Q136684765) | 2000 | SUNY Press | Q136684765 |
-| [*The Living Classroom: Teaching and Collective Consciousness*](https://www.wikidata.org/wiki/Q136684793) | 2008 | SUNY Press | Q136684793 |
-| [*Lifecycles: Reincarnation and the Web of Life*](https://www.wikidata.org/wiki/Q136684807) | 1991 | Paragon House | Q136684807 |
+
+| Title | Year | Publisher | Wikidata QID | ISBN-13 |
+|-------|------|------------|--------------|---------|
+| [*LSD and the Mind of the Universe: Diamonds from Heaven*](https://www.wikidata.org/wiki/Q136684740) | 2019 | Park Street Press | Q136684740 | 9781620559703 |
+| [*Dark Night, Early Dawn: Steps to a Deep Ecology of Mind*](https://www.wikidata.org/wiki/Q136684765) | 2000 | SUNY Press | Q136684765 | 9780791446065 |
+| [*The Living Classroom: Teaching and Collective Consciousness*](https://www.wikidata.org/wiki/Q136684793) | 2008 | SUNY Press | Q136684793 | 9780791474884 |
+| [*Lifecycles: Reincarnation and the Web of Life*](https://www.wikidata.org/wiki/Q136684807) | 1991 | Paragon House | Q136684807 | 9781557783451 |
 
 Aliases:
-- **LSD and the Mind of the Universe** — also known as *LSDMU*
+- **LSD and the Mind of the Universe** — also cited as *LSDMU*
+- **Christopher M. Bache** — appears in OpenAlex under author ID [A5045900737](https://openalex.org/A5045900737)
 
 ---
 
