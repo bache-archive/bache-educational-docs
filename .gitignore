@@ -45,3 +45,5 @@ temp/
 .Spotlight-V100
 .VolumeIcon.icnsassets.tar.gz
 docs_educational.tar.gz
+# Ignore backup markdown files
+*.bak.*
